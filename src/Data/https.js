@@ -1,7 +1,7 @@
-export async function fetchQstsData(dataURL) {
+export async function fetchData(dataURL) {
 
     const response = await fetch(dataURL);
-    const data = await response.json();
+    const data = await response.csv();
 
     if (!response.ok) {
         throw new Error('An error occurred while fetching the data');

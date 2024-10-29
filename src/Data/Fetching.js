@@ -1,61 +1,39 @@
-import { useState } from 'react';
-import Button from "../UI/Button";
-import { fetchQstsData } from './https';
-import DisplayScheduling from './DisplayScheduling';
+import { useState, useEffect } from 'react';
+// import { fetchQstsData } from './https';
 import useFetch from './useFetch';
-import Charts from '../Charts/Charts';
+// import Charts from '../Charts/Charts';
 import Error from '../UI/Error/Error';
+import { fetchData } from './https';
+import * as d3 from 'd3';
 
-export default function Fetching({networkModel, inFile1}) {
+export default function Fetching() {
 
-  const [isScheduling, setIsScheduling] = useState(false)
-  function handleScheduling() {
-    setIsScheduling((curIsScheduling) => !curIsScheduling);
-  }
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-  const [schedulingData, setSchedulingData] = useState(null);
-  function handleSchedulingData(data) {
-    setSchedulingData(data);
-  }
+   useEffect(() => {
+    // const dataURL = "https://github.gatech.edu/pages/jfernandez87/CSE6242DAV/cars_east0_4.csv";
+    const dataURL = "https://jorgelfer.github.io/CSE6242DAV/cars_east0_4.csv";
+    
+    let mounted = true;
+    d3.csv(dataURL).then(data => {
+      console.log("data", data);
 
-  const qstsURL = `http://127.0.0.1:5000/qsts/${networkModel}/${inFile1}`;
-  const {loading, data, error} = useFetch(fetchQstsData, qstsURL);
+      if (mounted) {
+        setData(data);
+        setLoading(false);
+      }
+    });
 
-  if (error) {
-    return <Error title="An error occurred during QSTS fetching!" message={error.message} />;
-  }
+    return () => mounted = false;
+  }, []); 
 
   return (
     <>
-      {!isScheduling && <>
-          {loading && <div className="loading">Loading...</div>}
-          {!loading && <>
-            <Charts data={data} />
-          </>}
-       </>}
-      {(isScheduling && schedulingData === null) && <>
-      <DisplayScheduling 
-        payload={data}
-        onSchedulingData={handleSchedulingData}
-      />
-      </>}
-      {(isScheduling && schedulingData !== null) && <>
-        <Charts data={schedulingData} />
-      </>}
-      <div className="buttons">
-        <Button
-          id="qsts"
-          label="QSTS"
-          isActive={!isScheduling}
-          onClick={handleScheduling}
-        />
-        <Button
-          id="scheduling"
-          label="Scheduling"
-          isActive={isScheduling}
-          onClick={handleScheduling}
-        />
-      </div>
+      {loading && <div className="loading">Loading...</div>}
+      {/* {!loading && <>
+        <Charts data={data} />
+      </>} */}
     </>
   );
 };
