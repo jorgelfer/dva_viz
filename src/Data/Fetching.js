@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Charts from '../Charts/Charts';
 import * as d3 from 'd3';
+import PostsSidebar from '../UI/SideBar/PostsSidebar';
 
 export default function Fetching() {
 
@@ -26,9 +27,10 @@ export default function Fetching() {
   return (
     <>
       {loading && <div className="loading">Loading...</div>}
-      {!loading && <>
+      {!loading && <main className="h-screen my-8 flex gap-8">
+        <PostsSidebar/>
         <Charts data={data} />
-      </>}
+      </main>}
     </>
   );
 };
