@@ -49,23 +49,51 @@ export default function MapGeojson(props) {
         .attr("stroke", "#09131b")
         .attr("stroke-opacity", 0.4);
 
-    var nodeEnter = mapContainer
+    let nodeEnter = mapContainer
+      .append("g")
+      .attr("class", "nodes");
+
+    let myNodes = nodeEnter
       .selectAll(".node")
       .data(props.data)
-      .join("g")
+      .join("circle")
         .attr("class", "node")
-        .attr('transform', function(d) { 
-          let coords = projection([d.longitude, d.latitude]);
-          return coords && `translate(${coords})`;
-         });
-
-    // Append circles for each node in the graph
-    nodeEnter
-      .append('circle')
-        .attr('class', 'circle')
         .attr("r", nodeSize)
         .style('fill', "red")
-        .raise();
+        .style('opacity', 0.5)
+        .attr('cx', function(d) { 
+          d["projection"] = projection([d.longitude, d.latitude]);
+          return d.projection && d.projection[0];
+         })
+        .attr('cy', function(d) { 
+          return d.projection && d.projection[1];
+         })
+         .raise();
+
+    // Brush
+    let nodeBrush = d3.brush().extent([[0, 0], [props.width, props.height]])
+        .on('brush', function (event) {
+            console.log('event::: ', event);
+            console.log('event.selection::: ', event.selection);
+
+            let brushedArea = event.selection
+            myNodes.classed('selected', d => {
+              let coords = projection([d.longitude, d.latitude]);
+              return coords && isBrushed(brushedArea, coords[0], coords[1])
+            });
+        })
+
+    function isBrushed(brush_coords, cx, cy) {
+        if (brush_coords) {
+            let x0 = brush_coords[0][0],
+                x1 = brush_coords[1][0],
+                y0 = brush_coords[0][1],
+                y1 = brush_coords[1][1];
+            return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+        }
+    }
+
+    nodeEnter.call(nodeBrush) // calling a d3 brush
  
     // Handle zoom
     // const zoomHandler = zoom()

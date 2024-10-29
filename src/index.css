@@ -115,3 +115,9 @@ a:hover, a:focus {
 .source {
   margin: 4rem 0 2rem;
 }
+
+.selected {
+  opacity: 1;
+  stroke: black;
+  stroke-width: 2px;
+}
