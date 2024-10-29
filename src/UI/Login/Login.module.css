@@ -9,7 +9,7 @@ form {
   max-width: 40rem;
   margin: 3rem auto;
   padding: 2rem;
-  background: linear-gradient(180deg, #520d0d, #1a1d1d);
+  background: linear-gradient(180deg, #06273b, #1a1d1d);
   border-radius: 8px;
   box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
 }
@@ -109,7 +109,7 @@ fieldset {
   font-size: 1rem;
   border-radius: 4px;
   border: none;
-  background-color: #520d0d;
+  background-color: #06273b;
   color: #d9e2f1;
   cursor: pointer;
 }

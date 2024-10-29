@@ -19,15 +19,39 @@
   overflow: hidden;
 }
 
+/* General aspect of the webpage */
 html {
   height: 100%;
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+*, ::after, ::before {
+  box-sizing: inherit;
 }
 
 body {
+  margin: 0 0 60px;
   height: 100%;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #06273b;
+}
+
+/* Type */
+h1, h2, h3, h4 {
+  font-family: 'Bebas Neue', 'sans-serif';
+}
+h1 {
+  margin: 6rem 0 1rem;
+  font-size: 4.5rem;
+}
+h2 {
   margin: 0;
-  font-family: Ubuntu;
-  background: linear-gradient(#b3ffab, #67fffc);
+  font-size: 2.8rem;
+  line-height: 1.2;
 }
 
 .main-header {
@@ -40,14 +64,18 @@ body {
 
 .page {
   display: flex;
-  /* flex-wrap:wrap; */
+  flex-wrap:wrap;
   /* height: calc( 100vh - 30px); */
   /* calculate the height. Header is 30px */
 }
 
 .sideBar {
   width: 100px;
-  background: linear-gradient(180deg, #520d0d, #1a1d1d);
+  background: linear-gradient(180deg, #06273b, #1a1d1d);
+}
+
+.sideBar-text {
+  color: #9bafaf;
 }
 
 .content {
