@@ -48,16 +48,34 @@ export default function MapGeojson(props) {
         .attr("fill", "none")
         .attr("stroke", "#09131b")
         .attr("stroke-opacity", 0.4);
+
+    var nodeEnter = mapContainer
+      .selectAll(".node")
+      .data(props.data)
+      .join("g")
+        .attr("class", "node")
+        .attr('transform', function(d) { 
+          let coords = projection([d.longitude, d.latitude]);
+          return coords && `translate(${coords})`;
+         });
+
+    // Append circles for each node in the graph
+    nodeEnter
+      .append('circle')
+        .attr('class', 'circle')
+        .attr("r", nodeSize)
+        .style('fill', "red")
+        .raise();
  
     // Handle zoom
-    const zoomHandler = zoom()
-      .on("zoom", (e) => {
-        mapContainer.attr("transform", e.transform);
-      });
+    // const zoomHandler = zoom()
+    //   .on("zoom", (e) => {
+    //     mapContainer.attr("transform", e.transform);
+    //   });
     
-    select(".map-container")
-      .call(zoomHandler)
-      .on("dblclick.zoom", null);
+    // select(".container")
+    //   .call(zoomHandler)
+    //   .on("dblclick.zoom", null);
 
   }, [props, nodeSize]);
 

@@ -12,7 +12,7 @@ export default function Fetching() {
     
     let mounted = true;
     d3.csv(dataURL).then(data => {
-      console.log("data", data);
+      // console.log("data", data);
 
       if (mounted) {
         setData(data);

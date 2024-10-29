@@ -2,7 +2,6 @@ import React from "react";
 import MapGraph from './MapGraph';
 
 export default function Charts(props) {
-
   const margin = {top: 30, right: 30, bottom: 50, left: 70};
 
   return (
