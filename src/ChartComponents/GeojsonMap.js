@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import * as d3 from "d3";
-import { geoAlbersUsa, geoPath} from "d3-geo";
 import { zoom } from "d3-zoom";
 import { select } from "d3-selection";
+
+import * as d3 from "d3";
+import { geoAlbersUsa, geoPath} from "d3-geo";
 import * as topojson from "topojson-client";
 import usa from "./states-10m.json";
 
