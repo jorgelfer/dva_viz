@@ -29,7 +29,7 @@ export default function Charts(props) {
           <h2>Craiglist used car search</h2>
         </div>
         <div className="page">
-          <PostSidebar />
+          <PostSidebar posts={selectedPosts.posts}/>
           <div className="content">
             <MapGraph 
               margin={margin} 
