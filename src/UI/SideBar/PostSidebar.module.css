@@ -1,10 +1,20 @@
+
+.sideBar {
+  width: 100px;
+  background: linear-gradient(180deg, #06273b, #1a1d1d);
+}
+
+.sideBar-text {
+  color: #9bafaf;
+}
+
 .posts {
   width: 90%;
   max-width: 90rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-  grid-gap: 5rem;
-  margin: 2rem auto;
+  grid-gap: 1rem;
+  margin: 1rem auto;
   list-style: none;
   padding: 0;
 }

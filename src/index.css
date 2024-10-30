@@ -69,15 +69,6 @@ h2 {
   /* calculate the height. Header is 30px */
 }
 
-.sideBar {
-  width: 100px;
-  background: linear-gradient(180deg, #06273b, #1a1d1d);
-}
-
-.sideBar-text {
-  color: #9bafaf;
-}
-
 .content {
   background-color: #fff;
   flex: 1 0 auto;
