@@ -53,9 +53,10 @@ export default function MapGeojson(props) {
       .append("g")
       .attr("class", "nodes");
 
+    let uniqueNodes = props.data.filter((v, i, a) => a.findIndex(t => (t.postID === v.postID)) === i);
     let myNodes = nodeEnter
       .selectAll(".node")
-      .data(props.data)
+      .data(uniqueNodes)
       .join("circle")
         .attr("class", "node")
         .attr("r", nodeSize)
@@ -73,14 +74,18 @@ export default function MapGeojson(props) {
     // Brush
     let nodeBrush = d3.brush().extent([[0, 0], [props.width, props.height]])
         .on('brush', function (event) {
-            console.log('event::: ', event);
-            console.log('event.selection::: ', event.selection);
+            // console.log('event::: ', event);
+            // console.log('event.selection::: ', event.selection);
 
             let brushedArea = event.selection
             myNodes.classed('selected', d => {
               let coords = projection([d.longitude, d.latitude]);
               return coords && isBrushed(brushedArea, coords[0], coords[1])
             });
+
+            // get all selected nodes
+            let selectedNodes = myNodes.filter('.selected').data();
+            props.updatePostDisplay(selectedNodes);
         })
 
     function isBrushed(brush_coords, cx, cy) {

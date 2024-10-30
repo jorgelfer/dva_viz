@@ -3,7 +3,7 @@ import ChartContainer from '../ChartComponents/ChartContainer';
 import GeojsonMap from '../ChartComponents/GeojsonMap';
 import usaMap from "../ChartComponents/us-states.json";
 
-export default function MapGraph({margin, data}) {
+export default function MapGraph({margin, data, updatePostDisplay}) {
   const width = 700;
   const height = 500;
   const innerWidth = width - margin.left - margin.right;
@@ -22,6 +22,7 @@ export default function MapGraph({margin, data}) {
           height={innerHeight}
           geo_data={usaMap}
           data={data}
+          updatePostDisplay={updatePostDisplay}
         />
       </ChartContainer>
     </Card>

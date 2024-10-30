@@ -1,9 +1,26 @@
-import React from "react";
+import { useState, useCallback } from "react";
 import MapGraph from './MapGraph';
 import PostSidebar from '../UI/SideBar/PostSidebar';
 
 export default function Charts(props) {
+  const [selectedPosts, setSelectedPosts] = useState({
+    selectedPost: undefined,
+    posts: []
+  });
   const margin = {top: 30, right: 30, bottom: 50, left: 70};
+
+  const updatePostDisplay = useCallback((posts) => {
+    // console.log(posts)
+    setSelectedPosts((prevState) =>{
+      return {
+        ...prevState,
+        selectedPost: null,
+        posts: posts
+      }
+    });
+  }, []);
+
+  console.log(selectedPosts)
 
   return (
     <>
@@ -17,6 +34,7 @@ export default function Charts(props) {
             <MapGraph 
               margin={margin} 
               data={props.data} 
+              updatePostDisplay={updatePostDisplay}
             />
           </div>
         </div>
