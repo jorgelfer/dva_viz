@@ -90,9 +90,13 @@ h2 {
   flex-wrap:wrap;
   list-style: none;
   justify-content: flex-start;
+  padding: 0;
 }
 
+.pagination a:hover:not(.active) {background-color: #ddd; color: #06273b;}
+
 .pagination a {
+  align-self: flex-start;
   color: #9bafaf;
   font-size: 0.9rem;
   float: left;
