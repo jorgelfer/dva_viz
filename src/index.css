@@ -83,3 +83,19 @@ h2 {
   border-radius: 5px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
 }
+
+.pagination {
+  /* display: inline-block; */
+  display: flex;
+  flex-wrap:wrap;
+  width: 90%;
+  list-style: none;
+}
+
+.pagination a {
+  color: #9bafaf;
+  font-size: 0.9rem;
+  float: center;
+  padding: 0px 5px;
+  text-decoration: none;
+}
