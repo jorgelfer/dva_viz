@@ -88,14 +88,14 @@ h2 {
   /* display: inline-block; */
   display: flex;
   flex-wrap:wrap;
-  width: 90%;
   list-style: none;
+  justify-content: flex-start;
 }
 
 .pagination a {
   color: #9bafaf;
   font-size: 0.9rem;
-  float: center;
+  float: left;
   padding: 0px 5px;
   text-decoration: none;
 }
