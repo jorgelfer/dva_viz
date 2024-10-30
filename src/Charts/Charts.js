@@ -20,8 +20,6 @@ export default function Charts(props) {
     });
   }, []);
 
-  console.log(selectedPosts)
-
   return (
     <>
       <div className="wrapper">
