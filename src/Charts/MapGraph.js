@@ -25,12 +25,16 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
 
   const geoPathGenerator = geoPath()
       .projection(projection); 
+  
+  ////////////////////////////////////
     
-  // get unique nodes with coordinates
+  // get unique posts with coordinates
   let uniqueNodes = data.filter((v, i, a) => {
     let coords = projection([v.longitude, v.latitude]);
-    return coords && a.findIndex(t => (t.postID === v.postID) === i);
+    return coords && a.indexOf(v) === i;
   });
+
+  ////////////////////////////////////
 
   // Brush
   const brushRef = useRef();
@@ -38,7 +42,6 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
     let nodeBrush = d3.brush()
       .extent([[0, 0], [innerWidth, innerHeight]])
     nodeBrush(d3.select(brushRef.current));
-
     nodeBrush
       .on('end', function (event) {
         // console.log('event::: ', event);
@@ -48,11 +51,12 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
           return;
         }
         let brushedArea = event.selection
-        // let post = uniqueNodes.map(d => {
-        //   let coords = projection([d.longitude, d.latitude]);
-        //   return isBrushed(brushedArea, coords[0], coords[1]) ? d : null;
-        // }) 
-        updatePostDisplay(brushedArea);
+        let posts = uniqueNodes.filter(d => {
+          let coords = projection([d.longitude, d.latitude]);
+          return isBrushed(brushedArea, coords[0], coords[1]);
+        }) 
+        // console.log(posts)
+        updatePostDisplay(posts);
         // myNodes.classed('selected', d => {
         //   let coords = projection([d.longitude, d.latitude]);
         //   return coords && isBrushed(brushedArea, coords[0], coords[1])
@@ -113,6 +117,7 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
         />
         {uniqueNodes.map((node, i) => (
           <Circle
+            key={`circle-${i}-${node.postID}`}
             cx={projection([node.longitude, node.latitude])[0]}
             cy={projection([node.longitude, node.latitude])[1]}
             r={2}
