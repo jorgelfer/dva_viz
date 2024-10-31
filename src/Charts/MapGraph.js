@@ -1,12 +1,11 @@
 import Card from '../UI/Card/Card';
 import ChartContainer from '../ChartComponents/ChartContainer';
-import GeojsonMap from '../ChartComponents/GeojsonMap';
 
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { geoAlbersUsa, geoPath} from "d3-geo";
 import * as topojson from "topojson-client";
-import usa from "../ChartComponents/states-10m.json";
+import usa from "../Data/states-10m.json";
 import Circle from '../ChartComponents/Circle';
 
 export default function MapGraph({margin, data, updatePostDisplay}) {
@@ -43,6 +42,11 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
       .extent([[0, 0], [innerWidth, innerHeight]])
     nodeBrush(d3.select(brushRef.current));
     nodeBrush
+      .on('start', function () {
+          updatePostDisplay([]);
+      })
+
+    nodeBrush
       .on('end', function (event) {
         // console.log('event::: ', event);
         // console.log('event.selection::: ', event.selection);
@@ -57,20 +61,6 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
         }) 
         // console.log(posts)
         updatePostDisplay(posts);
-        // myNodes.classed('selected', d => {
-        //   let coords = projection([d.longitude, d.latitude]);
-        //   return coords && isBrushed(brushedArea, coords[0], coords[1])
-        // });
-        // uniqueNodes.forEach(d => {
-        //   let coords = projection([d.longitude, d.latitude]);
-        //   d.selected = coords && isBrushed(brushedArea, coords[0], coords[1]);
-        // });
-        // let range = 
-
-        // get all selected nodes
-        // let selectedNodes = myNodes.filter('.selected').data();
-        // updatePostDisplay(selectedNodes.map(d => d.postID));
-
       })
   }, [updatePostDisplay, innerWidth, innerHeight, projection]);
 
@@ -92,13 +82,6 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
         height={height}
         margin={margin}
         >
-        {/* <GeojsonMap
-          width={innerWidth}
-          height={innerHeight}
-          geo_data={usaMap}
-          data={data}
-          updatePostDisplay={updatePostDisplay}
-        /> */}
         {states.map((state, i) => (
           <g key={`curve-${state.id}`}>
             <path
