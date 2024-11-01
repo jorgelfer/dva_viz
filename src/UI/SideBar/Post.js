@@ -2,8 +2,6 @@ import classes from './Post.module.css';
 
 // fill is a utility function that will fill width and height user provided images
 export default function Post({ post, onSelectPost, selectedPost }) {
-
-  console.log(post)
   let buttonClass = (selectedPost !== null) && (selectedPost.postID === post.postID) ? classes["selected-button"] : classes["details-button"];
   return (
     <article className={classes.post}>

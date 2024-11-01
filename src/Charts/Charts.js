@@ -28,12 +28,15 @@ export default function Charts(props) {
   }
 
   let content = <MapGraph
-            margin={margin} 
-            data={props.data} 
-            updatePostDisplay={updatePostDisplay}
-          />
+      margin={margin} 
+      data={props.data} 
+      updatePostDisplay={updatePostDisplay}
+    />
   if (selectedPosts.selectedPost !== null) {
-    content = <Details post={selectedPosts.selectedPost}/>;
+    content = <Details 
+      post={selectedPosts.selectedPost}
+      onClosePost={handlePostDisplay}
+      />;
   }
 
   return (
