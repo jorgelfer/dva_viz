@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 
 import classes from "./PostSidebar.module.css"
 import Post from "./Post"; 
-export default function PostSidebar({posts}) {
+export default function PostSidebar({posts, onSelectPost, selectedPostID}) {
 
   const [pagination, setPagination] = useState({
     offset: 0,
@@ -32,7 +32,14 @@ export default function PostSidebar({posts}) {
       <h2 className={classes["sideBar-text"]}> Posts</h2> 
       <ul className={classes.posts}>
        {pagination.currentData && pagination.currentData.map(post => <li key={post.postID}>
-         <Post {...post} />
+         <Post 
+            postID={post.postID}
+            model={post.model}
+            price={post.price}
+            year={post["make year"]}
+            onSelectPost={onSelectPost}
+            selectedPostID={selectedPostID}
+         />
          </li>)};
       </ul>
       <ReactPaginate

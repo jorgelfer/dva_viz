@@ -62,6 +62,16 @@
   cursor: pointer;
 }
 
+.selected-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #3b0606;
+  color: #d9e2f1;
+  cursor: pointer;
+}
+
 .actions {
   padding: 1rem;
   text-align: right;

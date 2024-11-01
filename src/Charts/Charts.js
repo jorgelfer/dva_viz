@@ -1,10 +1,11 @@
 import { useState, useCallback } from "react";
 import MapGraph from './MapGraph';
 import PostSidebar from '../UI/SideBar/PostSidebar';
+import Details from '../UI/Details/Details';
 
 export default function Charts(props) {
   const [selectedPosts, setSelectedPosts] = useState({
-    selectedPost: undefined,
+    selectedPost: null,
     posts: []
   });
   const margin = {top: 30, right: 30, bottom: 50, left: 70};
@@ -14,12 +15,26 @@ export default function Charts(props) {
     setSelectedPosts((prevState) =>{
       return {
         ...prevState,
-        selectedPost: null,
         posts: posts
       }
     });
   }, []);
-  console.log(selectedPosts.posts)
+
+  function handlePostDisplay(post) {
+    setSelectedPosts((prevState) => ({
+      ...prevState,
+      selectedPost: post,
+    }));
+  }
+
+  let content = <MapGraph
+            margin={margin} 
+            data={props.data} 
+            updatePostDisplay={updatePostDisplay}
+          />
+  if (selectedPosts.selectedPost !== null) {
+    content = <Details post={selectedPosts.selectedPost}/>;
+  }
 
   return (
     <>
@@ -28,13 +43,14 @@ export default function Charts(props) {
           <h2>Craiglist used car search</h2>
         </div>
         <div className="page">
-          <PostSidebar posts={selectedPosts.posts}/>
+          <PostSidebar 
+            posts={selectedPosts.posts}
+            onSelectPost={handlePostDisplay}
+            selectedPostID={selectedPosts.selectedPost}
+          />
           <div className="content">
-            <MapGraph 
-              margin={margin} 
-              data={props.data} 
-              updatePostDisplay={updatePostDisplay}
-            />
+            {selectedPosts.selectedPost && <Details post={selectedPosts.selectedPost}/>}
+            {content}
           </div>
         </div>
       </div>
