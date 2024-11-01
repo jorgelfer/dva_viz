@@ -46,10 +46,9 @@ export default function Charts(props) {
           <PostSidebar 
             posts={selectedPosts.posts}
             onSelectPost={handlePostDisplay}
-            selectedPostID={selectedPosts.selectedPost}
+            selectedPost={selectedPosts.selectedPost}
           />
           <div className="content">
-            {selectedPosts.selectedPost && <Details post={selectedPosts.selectedPost}/>}
             {content}
           </div>
         </div>
