@@ -37,54 +37,32 @@ export default function Login({onSubmitted}) {
 
       <div className={classes["control-row"]}>
         <div className={classes.control}>
-          <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" name="first-name" />
+          <label htmlFor="make">Make</label>
+          <input type="text" id="make" name="make" />
         </div>
 
         <div className={classes.control}>
-          <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" name="last-name" />
+          <label htmlFor="color">Color</label>
+          <input type="text" id="color" name="color" />
         </div>
       </div>
 
-      <div className={classes.control}>
-        <label htmlFor="phone">What best describes your role?</label>
-        <select id="role" name="role">
-          <option value="student">Student</option>
-          <option value="teacher">Teacher</option>
-          <option value="employee">Employee</option>
-          <option value="founder">Founder</option>
-          <option value="other">Other</option>
-        </select>
+      <div className={classes["control-row"]}>
+        <div className={classes.control}>
+          <label htmlFor="phone">Price Range</label>
+          <select id="price" name="price">
+            <option value="student">0 - $5,000</option>
+            <option value="teacher">$5,000 - $10,000</option>
+            <option value="employee">$10,000 - $20,000</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div className={classes.control}>
+          <label htmlFor="state">State</label>
+          <input type="text" id="state" name="state" />
+        </div>
       </div>
-
-      <fieldset>
-        <legend className={classes["login-header"]}>How did you find us?</legend>
-        <div className={classes.control}>
-          <input
-            type="checkbox"
-            id="google"
-            name="acquisition"
-            value="google"
-          />
-          <label htmlFor="google">Google</label>
-        </div>
-
-        <div className={classes.control}>
-          <input
-            type="checkbox"
-            id="friend"
-            name="acquisition"
-            value="friend"
-          />
-          <label htmlFor="friend">Referred by friend</label>
-        </div>
-
-        <div className={classes.control}>
-          <input type="checkbox" id="other" name="acquisition" value="other" />
-          <label htmlFor="other">Other</label>
-        </div>
-      </fieldset>
 
       <div className={classes.control}>
         <label htmlFor="terms-and-conditions">
@@ -94,7 +72,7 @@ export default function Login({onSubmitted}) {
       </div>
       <p className={classes["form-actions"]}>
         <button type="reset" className={classes["button-flat"]}>Reset</button>
-        <button className={classes["login-button"]}>Run qsts</button>
+        <button className={classes["login-button"]}>Search</button>
       </p>
     </form>
   );
