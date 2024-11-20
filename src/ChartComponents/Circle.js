@@ -7,6 +7,7 @@ const Circle = props => {
       fill={props.fill}
       stroke={props.stroke ? props.stroke : "none"}
       strokeWidth={props.strokeWidth ? props.strokeWidth : 0} 
+      {...props}
     />
   )
 };

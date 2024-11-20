@@ -34,7 +34,13 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
   // color gradient
   const colorScale = d3.scaleSequential(d3.interpolateBlues)
     .domain(d3.extent(data, d => d.similarity_score));
-  console.log(colorScale.domain());
+  const radiusScale = d3.scaleSqrt()
+    .domain(d3.extent(data, d => d.similarity_score))
+    .range([2, 5]);
+
+  console.log([...new Set(data.map(d => d.similarity_score))]);
+
+  // console.log(colorScale.domain());
   
   ////////////////////////////////////
     
@@ -45,7 +51,6 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
   });
 
   ////////////////////////////////////
-
   // Brush
   const brushRef = useRef();
   useEffect(() => {
@@ -83,6 +88,13 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
               y1 = brush_coords[1][1];
           return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
       }
+  }  
+  ////////////////////////////////////
+  
+  // Handler for click events on devices
+  function node_click(event) {
+    let d = uniqueNodes.find(d => d.postID === Number(event.target.id));
+    updatePostDisplay([d]);
   }
 
   return(
@@ -96,7 +108,7 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
         {actions.map((action, i) => (
           <image
             key={action.value}
-            x={-margin.left} 
+            x={-margin.left + 10} 
             y={10 + i * 35} 
             className="interaction"
             opacity={props.selectedAction === action.value ? 1 : 0.6}
@@ -125,16 +137,18 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
         />
         {uniqueNodes.map((node, i) => (
           <Circle
-            key={`circle-${i}-${node.postID}`}
+            key={`circle-${node.postID}`}
+            id={node.postID}
             cx={projection([node.longitude, node.latitude])[0]}
             cy={projection([node.longitude, node.latitude])[1]}
-            r={2}
+            r={radiusScale(node.similarity_score)}
             fill={colorScale(node.similarity_score)}
             stroke="#000"
             strokeWidth={0.5}
+            onClick={props.selectedAction === "cursor" ? node_click : null}
           />
         ))}
-        <g className="brush" ref={brushRef} />
+        {props.selectedAction === "brush" && <g className="brush" ref={brushRef} />}
       </ChartContainer>
     </Card>
   );
