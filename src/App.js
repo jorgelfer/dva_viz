@@ -13,7 +13,7 @@ function App() {
     color: "Blue",
     price: "10000",
     state: "Georgia",
-    type: "Automatic ",
+    type: "Automatic",
     year: "2000"
   });
 

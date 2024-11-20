@@ -4,7 +4,7 @@ import { fetchCarsData } from './https';
 import useFetch from './useFetch';
 import * as d3 from 'd3';
 
-export default function Fetching({price, make, color, state, type, year}) {
+export default function Fetching({values}) {
 
   // const [loading, setLoading] = useState(true);
   // const [data, setData] = useState([]);
@@ -25,7 +25,8 @@ export default function Fetching({price, make, color, state, type, year}) {
   //   return () => mounted = false;
   // }, []); 
 
-  const carsURL = `http://127.0.0.1:5000/api/cars/${price}/${make}/${type}/${year}`;
+  const carsURL = `http://127.0.0.1:5000/api/cars/${values.price}/${values.make}/${values.type}/${values.year}`;
+  console.log(carsURL);
   const {loading, data, error} = useFetch(fetchCarsData, carsURL);
 
   return (
