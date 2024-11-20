@@ -44,9 +44,9 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             name="make"
             onChange={(event) => onEnteredValues('make', event.target.value)}
           >
-            <option value="Toyota">Toyota</option>
-            <option value="Nissan">Nissan</option>
-            <option value="Honda">Honda</option>
+            <option value="toyota">Toyota</option>
+            <option value="nissan">Nissan</option>
+            <option value="honda">Honda</option>
           </select>
         </div>
 
@@ -58,9 +58,9 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             name="color"
             onChange={(event) => onEnteredValues('color', event.target.value)}
           >
-            <option value="Blue">Blue</option>
-            <option value="Red">Red</option>
-            <option value="White">White</option>
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
           </select>
         </div>
 
@@ -74,7 +74,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
           >
             <option value={5000}>0 - $5,000</option>
             <option value={10000}>$5,000 - $10,000</option>
-            <option value={20000}>$10,000 - $20,000</option>
+            <option value={15000}>$10,000 - $20,000</option>
           </select>
         </div>
 
@@ -119,7 +119,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
           >
             <option value="2000">2000 or earlier</option>
             <option value="2010">2001 - 2010</option>
-            <option value="2020">2011 - 2020</option>
+            <option value="2012">2011 - 2020</option>
             <option value="2024">2020 or later</option>
           </select>
         </div>

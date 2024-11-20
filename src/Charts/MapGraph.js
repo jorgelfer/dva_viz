@@ -7,12 +7,18 @@ import { geoAlbersUsa, geoPath} from "d3-geo";
 import * as topojson from "topojson-client";
 import usa from "../Data/states-10m.json";
 import Circle from '../ChartComponents/Circle';
+import ActionIcons from "../Interactions/ActionIcons";
 
-export default function MapGraph({margin, data, updatePostDisplay}) {
+export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
   const width = 700;
   const height = 500;
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
+
+  let actions = [
+    { value:"cursor" , label:"Cursor"},
+    { value:"brush" , label:"Brush"},
+  ];
 
   let states = topojson.feature(usa, usa.objects.states).features;
   let borders = topojson.mesh(usa, usa.objects.states);
@@ -24,6 +30,11 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
 
   const geoPathGenerator = geoPath()
       .projection(projection); 
+
+  // color gradient
+  const colorScale = d3.scaleSequential(d3.interpolateBlues)
+    .domain(d3.extent(data, d => d.similarity_score));
+  console.log(colorScale.domain());
   
   ////////////////////////////////////
     
@@ -82,6 +93,20 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
         height={height}
         margin={margin}
         >
+        {actions.map((action, i) => (
+          <image
+            key={action.value}
+            x={-margin.left} 
+            y={10 + i * 35} 
+            className="interaction"
+            opacity={props.selectedAction === action.value ? 1 : 0.6}
+            heigth={25}
+            width={25}
+            href={ActionIcons(action.value)}
+            onClick={() => props.onSelectedAction(action.value)}
+            >
+          </image>
+        ))}
         {states.map((state, i) => (
           <g key={`curve-${state.id}`}>
             <path
@@ -104,7 +129,7 @@ export default function MapGraph({margin, data, updatePostDisplay}) {
             cx={projection([node.longitude, node.latitude])[0]}
             cy={projection([node.longitude, node.latitude])[1]}
             r={2}
-            fill="#f00"
+            fill={colorScale(node.similarity_score)}
             stroke="#000"
             strokeWidth={0.5}
           />

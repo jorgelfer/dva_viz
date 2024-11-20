@@ -27,10 +27,20 @@ export default function Charts(props) {
     }));
   }
 
+  // handle network interactions
+  const [selectedAction, setSelectedAction] = useState('cursor');
+  function handleSelectedAction(selectedIcon) {
+    if (selectedAction !== selectedIcon) {
+      setSelectedAction(selectedIcon);
+    }
+  }
+
   let content = <MapGraph
       margin={margin} 
       data={props.data} 
       updatePostDisplay={updatePostDisplay}
+      selectedAction={selectedAction}
+      onSelectedAction={handleSelectedAction}
     />
   if (selectedPosts.selectedPost !== null) {
     content = <Details 

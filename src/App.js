@@ -9,12 +9,12 @@ function App() {
   }
 
   const [enteredValues, setEnteredValues] = useState({
-    make: "Toyota",
-    color: "Blue",
-    price: "10000",
-    state: "Georgia",
+    make: "toyota",
+    color: "white",
     type: "SUV",
-    year: "2020"
+    price: "15000",
+    state: "Georgia",
+    year: "2012"
   });
 
   function handleInputChange(identifier, value) {
