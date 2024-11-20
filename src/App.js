@@ -24,8 +24,6 @@ function App() {
     }))
   }
 
-  console.log(enteredValues);
-
   return (
     <>
       {!isCaseSubmitted && <main>
@@ -36,7 +34,9 @@ function App() {
         />
       </main>}
       {isCaseSubmitted && <div className="container">
-        <Fetching/>
+        <Fetching
+          values={enteredValues}
+        />
       </div>}
     </>
   );
