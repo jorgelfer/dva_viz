@@ -25,7 +25,7 @@ export default function Fetching({values}) {
   //   return () => mounted = false;
   // }, []); 
 
-  const carsURL = `http://127.0.0.1:5000/api/cars/${values.price}/${values.make}/${values.type}/${values.year}`;
+  const carsURL = `http://127.0.0.1:5000/api/cars/${values.make}/${values.type}/${values.year}`;
   console.log(carsURL);
   const {loading, data, error} = useFetch(fetchCarsData, carsURL);
 

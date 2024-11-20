@@ -13,8 +13,8 @@ function App() {
     color: "Blue",
     price: "10000",
     state: "Georgia",
-    type: "Automatic",
-    year: "2000"
+    type: "SUV",
+    year: "2020"
   });
 
   function handleInputChange(identifier, value) {

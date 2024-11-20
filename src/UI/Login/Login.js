@@ -103,6 +103,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             name="type"
             onChange={(event) => onEnteredValues('type', event.target.value)}
           >
+            <option value="SUV">SUV</option>
             <option value="automatic">Automatic</option>
             <option value="manual">Manual</option>
           </select>
