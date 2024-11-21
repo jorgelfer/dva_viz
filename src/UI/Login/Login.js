@@ -56,6 +56,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             type="text" 
             id="color" 
             name="color"
+            value={values.color}
             onChange={(event) => onEnteredValues('color', event.target.value)}
           >
             <option value="blue">Blue</option>
@@ -70,6 +71,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             type="number" 
             id="price" 
             name="price"
+            value={values.price}
             onChange={(event) => onEnteredValues('price', event.target.value)}
           >
             <option value={5000}>0 - $5,000</option>
@@ -96,7 +98,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
         </div>
 
         <div className={classes.control}>
-          <label htmlFor="text">Transmission</label>
+          <label htmlFor="text">Type</label>
           <select 
             type="text" 
             id="type" 
@@ -115,6 +117,7 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             type="number" 
             id="year" 
             name="year"
+            value={values.year}
             onChange={(event) => onEnteredValues('year', event.target.value)}
           >
             <option value="2000">2000 or earlier</option>

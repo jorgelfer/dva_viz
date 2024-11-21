@@ -38,12 +38,6 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
   var colorScale = d3.scaleQuantile()
       .domain(scores.reverse())
       .range(['blue', 'orange', 'red']);
-  // console.log(colorScale.quantiles());
-
-  // console.log(colorScale.invertExtent("blue"));
-  // console.log(colorScale.invertExtent("white"));
-  // console.log(colorScale.invertExtent("red"));
-  // console.log(colorScale.invertExtent("#d94701"));
 
   // create legend
   const legendRef = useRef();
@@ -60,8 +54,6 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
   const radiusScale = d3.scaleSqrt()
     .domain(d3.extent(data, d => d.similarity_score))
     .range([2, 5]);
-
-  // console.log([...new Set(data.map(d => d.similarity_score.toFixed(2)))]);
 
   ////////////////////////////////////
   // get unique posts with coordinates
@@ -83,8 +75,6 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
 
     nodeBrush
       .on('end', function (event) {
-        // console.log('event::: ', event);
-        // console.log('event.selection::: ', event.selection);
         if (!event.selection) {
           updatePostDisplay([]);
           return;
@@ -94,7 +84,6 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
           let coords = projection([d.longitude, d.latitude]);
           return isBrushed(brushedArea, coords[0], coords[1]);
         }) 
-        // console.log(posts)
         updatePostDisplay(posts);
       })
   }, [updatePostDisplay, innerWidth, innerHeight, projection]);
