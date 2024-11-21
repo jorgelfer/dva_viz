@@ -8,6 +8,7 @@ export default function Post({ post, onSelectPost, selectedPost }) {
       <header>
         <div className={classes.headerText}>
           <h2>{post.model}</h2>
+          <p>score {post.similarity_score.toFixed(2)}</p>
           <p>price {post.price}</p>
           <p>year {post["make year"]}</p>
         </div>

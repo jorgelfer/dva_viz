@@ -8,7 +8,7 @@ export default function Charts(props) {
     selectedPost: null,
     posts: []
   });
-  const margin = {top: 30, right: 30, bottom: 50, left: 70};
+  const margin = {top: 30, right: 100, bottom: 50, left: 70};
 
   const updatePostDisplay = useCallback((posts) => {
     // console.log(posts)

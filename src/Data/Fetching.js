@@ -26,10 +26,10 @@ export default function Fetching({values}) {
   // }, []); 
 
   const carsURL = `http://127.0.0.1:5000/api/recommend/${values.make}/${values.color}/${values.type}/${values.price}/${values.year}`;
-  console.log(carsURL);
+  // console.log(carsURL);
   const {loading, data, error} = useFetch(fetchCarsData, carsURL);
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <>

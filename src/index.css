@@ -103,3 +103,25 @@ h2 {
   padding: 0px 5px;
   text-decoration: none;
 }
+
+/* scale legend */
+.swatch.blue {
+  fill: #0d47a1;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.swatch.orange {
+  fill: #ff6d00;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.swatch.red {
+  fill: #b71c1c;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 5px;
+}

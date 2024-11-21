@@ -8,9 +8,10 @@ import * as topojson from "topojson-client";
 import usa from "../Data/states-10m.json";
 import Circle from '../ChartComponents/Circle';
 import ActionIcons from "../Interactions/ActionIcons";
+import {legendColor} from 'd3-svg-legend'
 
 export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
-  const width = 700;
+  const width = 800;
   const height = 500;
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -32,24 +33,42 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
       .projection(projection); 
 
   // color gradient
-  const colorScale = d3.scaleSequential(d3.interpolateBlues)
-    .domain(d3.extent(data, d => d.similarity_score));
+  // let scores = data.map(d => +d.similarity_score.toFixed(2)); 
+  let scores = [...new Set(data.map(d => d.similarity_score.toFixed(2)))].map(d => +d);
+  var colorScale = d3.scaleQuantile()
+      .domain(scores.reverse())
+      .range(['blue', 'orange', 'red']);
+  // console.log(colorScale.quantiles());
+
+  // console.log(colorScale.invertExtent("blue"));
+  // console.log(colorScale.invertExtent("white"));
+  // console.log(colorScale.invertExtent("red"));
+  // console.log(colorScale.invertExtent("#d94701"));
+
+  // create legend
+  const legendRef = useRef();
+  useEffect(() => {
+    let legend = legendColor()
+      .labelFormat(d3.format(".2f"))
+      .useClass(true)
+      .title("Similarity Score")
+      .titleWidth(100)
+      .scale(colorScale);
+    legend(d3.select(legendRef.current))
+  }, [colorScale]);
+
   const radiusScale = d3.scaleSqrt()
     .domain(d3.extent(data, d => d.similarity_score))
     .range([2, 5]);
 
-  console.log([...new Set(data.map(d => d.similarity_score))]);
+  // console.log([...new Set(data.map(d => d.similarity_score.toFixed(2)))]);
 
-  // console.log(colorScale.domain());
-  
   ////////////////////////////////////
-    
   // get unique posts with coordinates
   let uniqueNodes = data.filter((v, i, a) => {
     let coords = projection([v.longitude, v.latitude]);
     return coords && a.indexOf(v) === i;
   });
-
   ////////////////////////////////////
   // Brush
   const brushRef = useRef();
@@ -142,13 +161,14 @@ export default function MapGraph({margin, data, updatePostDisplay, ...props}) {
             cx={projection([node.longitude, node.latitude])[0]}
             cy={projection([node.longitude, node.latitude])[1]}
             r={radiusScale(node.similarity_score)}
-            fill={colorScale(node.similarity_score)}
+            fill={colorScale(node.similarity_score.toFixed(2))}
             stroke="#000"
             strokeWidth={0.5}
             onClick={props.selectedAction === "cursor" ? node_click : null}
           />
         ))}
         {props.selectedAction === "brush" && <g className="brush" ref={brushRef} />}
+        <g transform={`translate(${innerWidth - 50}, ${innerHeight-100})`} ref={legendRef} />
       </ChartContainer>
     </Card>
   );
