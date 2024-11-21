@@ -73,7 +73,7 @@ export default function MapGeojson(props) {
 
     // Brush
     let nodeBrush = d3.brush().extent([[0, 0], [props.width, props.height]])
-        .on('brush', function (event) {
+        .on('end', function (event) {
             // console.log('event::: ', event);
             // console.log('event.selection::: ', event.selection);
 
