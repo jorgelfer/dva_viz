@@ -11,7 +11,11 @@ It can be created by executing DBcreator.py
 Python V3.13
 pip
 
-execute
+
+To load the images (20gb):
+unzip the "img" folder and place it in the root directory
+
+execute:
 pip install -r requirements.txt
 
 
