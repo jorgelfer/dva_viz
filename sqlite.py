@@ -244,7 +244,7 @@ def predict_price_url(make, color_group, type_group, year):
 @app.route('/images/<filename>', methods=['GET'])
 def get_image(filename):
     try:
-        return send_from_directory("img/img/", f"{filename}.jpg")
+        return send_from_directory("img/", f"{filename}.jpg")
     except Exception as e:
         abort(404, description=f"Image not found: {e}")
 
