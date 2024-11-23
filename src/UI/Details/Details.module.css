@@ -1,19 +1,21 @@
-
 .post {
   display: flex;
-  flex-wrap:wrap;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row; /* Changed from column to row for side-by-side layout */
   justify-content: space-between;
-  width: 60%;
+  align-items: flex-start; /* Align items at the top */
+  width: 80%; /* Increased width to fit images and details */
   border-radius: 4px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   background: linear-gradient(90deg, #9bafaf, #fff);
+  margin: auto; /* Center the card */
 }
 
 .headerText {
   padding: 0.5rem 1rem 0 1rem;
+  width: 100%; /* Full width for the header */
 }
 
 .headerText h2 {
@@ -55,4 +57,52 @@
 .login-button:hover,
 .login-button:focus {
   background-color: #319890;
+}
+
+/* Details Section */
+.details {
+  flex: 2; /* Allocate 2/3 of the width to the details */
+  padding: 1rem;
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Image Carousel Section */
+.carousel {
+  flex: 1; /* Allocate 1/3 of the width to the carousel */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between the image and navigation buttons */
+  padding: 1rem;
+}
+
+.image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover; /* Maintain aspect ratio, cropping as needed */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.navButton {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.navButton:hover {
+  background-color: #555;
 }

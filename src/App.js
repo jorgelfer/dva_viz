@@ -13,7 +13,7 @@ function App() {
     color: "white",
     type: "SUV",
     price: "15000",
-    state: "Georgia",
+    state: "GA",
     year: "2012"
   });
 

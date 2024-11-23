@@ -45,8 +45,14 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             onChange={(event) => onEnteredValues('make', event.target.value)}
           >
             <option value="toyota">Toyota</option>
-            <option value="nissan">Nissan</option>
+            <option value="ford">Ford</option>
             <option value="honda">Honda</option>
+            <option value="nissan">Nissan</option>            
+            <option value="bmw">BMW</option>
+            <option value="audi">Audi</option>
+            <option value="kia">Kia</option>
+            {/* <option value="volvo">Volvo</option> 
+            <option value="volkswagen">volkswagen</option>              */}
           </select>
         </div>
 
@@ -62,11 +68,14 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             <option value="blue">Blue</option>
             <option value="red">Red</option>
             <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="grey">Grey</option>
+            <option value="green">Green</option>
           </select>
         </div>
 
         <div className={classes.control}>
-          <label htmlFor="number">Price Range</label>
+          <label htmlFor="number">Price</label>
           <select 
             type="number" 
             id="price" 
@@ -74,9 +83,15 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             value={values.price}
             onChange={(event) => onEnteredValues('price', event.target.value)}
           >
-            <option value={5000}>0 - $5,000</option>
-            <option value={10000}>$5,000 - $10,000</option>
-            <option value={15000}>$10,000 - $20,000</option>
+            <option value={5000}>under $5,000</option>
+            <option value={10000}>under $10,000</option>
+            <option value={15000}>under $15,000</option>
+            <option value={20000}>under $20,000</option>
+            <option value={25000}>under $25,000</option>
+            <option value={30000}>under $30,000</option>
+            <option value={35000}>under $35,000</option>
+            <option value={40000}>under $40,000</option>
+            <option value={45000}>under $45,000</option>
           </select>
         </div>
 
@@ -91,9 +106,12 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             name="state"
             onChange={(event) => onEnteredValues('state', event.target.value)}
           >
-            <option value="Georgia">GA</option>
-            <option value="Florida">FL</option>
-            <option value="Tennesse">TN</option>
+            <option value="FA">GA</option>
+            <option value="FL">FL</option>
+            <option value="TN">TN</option>
+            <option value="SC">SC</option>
+            <option value="AL">AL</option>
+            <option value="CL">CL</option>
           </select>
         </div>
 
@@ -106,26 +124,29 @@ export default function Login({values, onSubmitted, onEnteredValues}) {
             onChange={(event) => onEnteredValues('type', event.target.value)}
           >
             <option value="SUV">SUV</option>
-            <option value="automatic">Automatic</option>
-            <option value="manual">Manual</option>
+            <option value="sedan">Sedan</option>
+            <option value="pickup">Pickup</option>
+            <option value="hatchback">Hatchback</option>
+            <option value="coupe">Coupe</option>
+            <option value="convertible">Covertible</option>
           </select>
         </div>
 
         <div className={classes.control}>
-          <label htmlFor="number">Year</label>
-          <select 
-            type="number" 
-            id="year" 
-            name="year"
-            value={values.year}
-            onChange={(event) => onEnteredValues('year', event.target.value)}
-          >
-            <option value="2000">2000 or earlier</option>
-            <option value="2010">2001 - 2010</option>
-            <option value="2012">2011 - 2020</option>
-            <option value="2024">2020 or later</option>
-          </select>
-        </div>
+        <label htmlFor="number">POST-YEAR</label>
+        <select
+          id="year"
+          name="year"
+          value={values.year}
+          onChange={(event) => onEnteredValues('year', event.target.value)}
+        >
+          {Array.from({ length: 2024 - 2000 + 1 }, (_, i) => 2000 + i).map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+      </div>
       </div>
 
       <div className={classes.control}>
