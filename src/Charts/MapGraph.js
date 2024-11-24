@@ -126,7 +126,7 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <div style={{ width: "90%", maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Display Predicted Price
@@ -136,7 +136,7 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
           </p>
         )} */}
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
           <h2>Map</h2>
           <button
             style={{
