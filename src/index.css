@@ -77,11 +77,18 @@ h2 {
 
 /* Flex layout */
 .card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; /* Changed from column to row for side-by-side layout */
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
   margin: 10px 0;
   padding: 30px 20px;
   background-color: #fff;
+  overflow: hidden;
   border-radius: 5px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+  margin: auto; /* Center the card */
 }
 
 .pagination {

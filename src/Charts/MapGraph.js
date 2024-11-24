@@ -105,6 +105,20 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
   }
   ////////////////////////////////////
 
+
+  ////////////////////////////////////
+  // Zoom
+  // const zoomRef = useRef();
+  // useEffect(() => {
+  //   const zoomHandler = d3.zoom()
+  //     .on("zoom", (e) => {
+  //       d3.select(zoomRef.current).attr("transform", e.transform);
+  //     });
+  //   // zoomHandler
+  //   //   .on("dblclick.zoom", null);
+  // }, []);
+  ////////////////////////////////////
+
   // Handler for click events on devices
   function node_click(event) {
     let d = uniqueNodes.find(d => d.postID === Number(event.target.id));
@@ -112,7 +126,7 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <div style={{ width: "90%", maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Display Predicted Price
@@ -122,7 +136,7 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
           </p>
         )} */}
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
           <h2>Map</h2>
           <button
             style={{
@@ -189,6 +203,7 @@ export default function MapGraph({ margin, data, predictedPrice, values, updateP
               />
             ))}
             {props.selectedAction === "brush" && <g className="brush" ref={brushRef} />}
+            {/* {props.selectedAction === "cursor" && <g className="zoom" ref={zoomRef} />} */}
             <g transform={`translate(${innerWidth - 50}, ${innerHeight - 100})`} ref={legendRef} />
           </ChartContainer>
         </Card>

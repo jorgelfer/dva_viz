@@ -3,7 +3,7 @@
   flex-wrap:wrap;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  width: 90%;
   border-radius: 4px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -17,12 +17,13 @@
 
 .headerText h2 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 2rem;
   font-family: 'Montserrat', sans-serif;
+  color: #06273b;
 }
 
 .headerText p {
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   color: #06273b;
   font-style: italic;
 }
