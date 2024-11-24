@@ -3,7 +3,7 @@
   flex-wrap:wrap;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  width: 90%;
   border-radius: 4px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -19,6 +19,7 @@
   margin: 0;
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
+  color: #06273b;
 }
 
 .headerText p {
