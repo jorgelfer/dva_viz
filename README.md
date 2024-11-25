@@ -141,7 +141,7 @@ Ensure the following are installed:
 
 4. **Load Images**:
    - By default, the `img` folder contains images for Georgia car listings.
-   - To view images for all states, replace the `img` folder with the full version available [here](https://gtvault-my.sharepoint.com/:f:/g/personal/ssudhakar36_gatech_edu/Eo-ToCTm9UxFqhco90crpK4B-QO_H7TtDT2_ygVXmD0PsQ?e=p35aog). Unzip the folder in the root directory (Size 20gb).
+   - To view images for all states, replace the `img` folder with the full version available [here](https://gtvault-my.sharepoint.com/:u:/g/personal/ssudhakar36_gatech_edu/EUNbA5tKdRNAjs9xs5liNSMBKPhko9hkChnjwiUy8WLbtg?e=nqCGJl). Unzip the folder in the root directory (Size 20gb).
 
 ---
 
