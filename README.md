@@ -2,6 +2,7 @@
 
 This project provides a comprehensive tool for analyzing used car prices across the USA, helping users make informed decisions by visualizing data, predicting prices, and offering personalized recommendations. It combines extensive data scraping, machine learning, and a user-friendly interactive web interface.
 
+DEMO VIDEO - [Watch Demo Video](https://www.youtube.com/watch?v=D8gs4adZwwM)
 ---
 
 ## Table of Contents
